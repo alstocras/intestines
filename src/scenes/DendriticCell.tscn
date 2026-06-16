@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://cdc4bfcpu1aq1"]
+
+[ext_resource type="Script" path="res://Anim.gd" id="1_2hac7"]
+[ext_resource type="Texture2D" uid="uid://bq3nol7y1q1ry" path="res://assets/sprites/enemy/dendritic/dendritic-cell-attack.png" id="2_q15jx"]
+[ext_resource type="Texture2D" uid="uid://dvsci6w5cqgts" path="res://assets/sprites/enemy/dendritic/dendritic-cell-die.png" id="3_ood1q"]
+[ext_resource type="Texture2D" uid="uid://hsw5kvgwr2ni" path="res://assets/sprites/enemy/dendritic/dendritic-cell-idle.png" id="4_6k32p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44elq"]
+atlas = ExtResource("2_q15jx")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l36yn"]
+atlas = ExtResource("2_q15jx")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dx2f"]
+atlas = ExtResource("2_q15jx")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tt1xp"]
+atlas = ExtResource("2_q15jx")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0ete"]
+atlas = ExtResource("2_q15jx")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkk3l"]
+atlas = ExtResource("3_ood1q")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10qf7"]
+atlas = ExtResource("3_ood1q")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4vpb"]
+atlas = ExtResource("3_ood1q")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cr4dj"]
+atlas = ExtResource("4_6k32p")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqw78"]
+atlas = ExtResource("4_6k32p")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s7bn3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44elq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l36yn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dx2f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tt1xp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0ete")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkk3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10qf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4vpb")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cr4dj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqw78")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2hac7"]
+radius = 25.019993
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e6d4v"]
+radius = 24.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mx1ty"]
+bg_color = Color(0.96467716, 0.36579147, 0.44944978, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_46e6m"]
+bg_color = Color(0, 0.7172405, 0.39426312, 1)
+
+[node name="DendriticCell" type="CharacterBody2D" unique_id=1531359458]
+scale = Vector2(2, 2)
+script = ExtResource("1_2hac7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=39604726]
+position = Vector2(-2.5, 5)
+sprite_frames = SubResource("SpriteFrames_s7bn3")
+animation = &"death"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1683147995]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=332702287]
+shape = SubResource("CircleShape2D_2hac7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=434216812]
+shape = SubResource("CircleShape2D_e6d4v")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=448256609]
+offset_left = -14.0
+offset_top = -43.0
+offset_right = 14.0
+offset_bottom = -38.5
+theme_override_styles/background = SubResource("StyleBoxFlat_mx1ty")
+theme_override_styles/fill = SubResource("StyleBoxFlat_46e6m")
+value = 100.0
+show_percentage = false
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
