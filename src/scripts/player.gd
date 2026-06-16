@@ -52,12 +52,6 @@ func set_attack_cooldown():
 
 func _physics_process(delta: float) -> void:
 	progress_bar.value = health
-	if is_attacking:
-	
-		sprite.play("attack")
-
-	else:
-		sprite.play("default")
 	if Input.is_action_pressed("rotate_left") and not is_attacking:
 		rotation_degrees -= 180 * delta;
 	if Input.is_action_pressed("rotate_right") and not is_attacking:
@@ -68,19 +62,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity = Vector2.ZERO
 		
-	if Input.is_action_just_pressed("attack"):
-		if is_in_cooldown:
-			return
-		else:
-			attack_count += 1
-			is_attacking = true
-			dash()
-			area_2d.scale = Vector2(0.8,0.8)
-			sprite.play("attack")
-			await get_tree().create_timer(0.5).timeout
-			is_attacking = false
-			area_2d.scale = Vector2(0.2,0.2)
-			set_attack_cooldown()
+
 	if is_taking_knockback:
 		velocity = -forward_vector * SPEED * 2 * delta
 	if is_dashing and not is_taking_knockback:
@@ -100,6 +82,27 @@ func _process(_delta: float) -> void:
 		await get_tree().create_timer(10).timeout
 		timer_not_allready_created = false
 		health += 10
+
+	if Input.is_action_just_pressed("attack"):
+		if is_in_cooldown:
+			return
+		else:
+			attack_count += 1
+			set_attack()
+			dash()
+
+			set_attack_cooldown()
+	if is_attacking:
+		sprite.play("attack")
+	else:
+		sprite.play("default")
+
+func set_attack():
+	is_attacking = true
+	area_2d.scale = Vector2(0.8,0.8)	
+	await get_tree().create_timer(0.5).timeout
+	area_2d.scale = Vector2(0.2,0.2)
+	is_attacking = false
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	print(body)

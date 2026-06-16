@@ -119,7 +119,7 @@ animations = [{
 radius = 28.004463
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b0fui"]
-radius = 21.523243
+radius = 25.5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bdmq8"]
 bg_color = Color(0.9907289, 0.3209944, 0.48704082, 1)
@@ -140,7 +140,7 @@ position = Vector2(-1.3113416e-07, -1.5)
 shape = SubResource("CircleShape2D_1bj2h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=490544429]
-position = Vector2(-0.5, 4.3711367e-08)
+position = Vector2(-1.7881393e-07, -1.4999999)
 shape = SubResource("CircleShape2D_b0fui")
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=223905827]
