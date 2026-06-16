@@ -6,6 +6,7 @@ var player : CharacterBody2D = null
 var is_retreating : bool = false
 var is_attacking = false
 var is_taking_knockback = false
+var is_stunned = false
 func _ready() -> void:
 
 	player = get_tree().current_scene.find_child("Player", true, false) as CharacterBody2D
@@ -18,7 +19,9 @@ func take_damage(num : int):
 	progress_bar.value = health
 	print("enemy health " , health)
 	take_knockback()
-	await get_tree().create_timer(1).timeout
+	is_stunned = true
+	await get_tree().create_timer(2).timeout
+	is_stunned = false
 	
 func take_knockback() -> void:
 	is_taking_knockback = true
@@ -57,6 +60,7 @@ func _physics_process(delta: float) -> void:
 			velocity = direction_to_player * randi_range(1000,1200) * -10 * delta
 		else:
 			return
+	if not is_stunned:
 		move_and_slide()
 
 	
