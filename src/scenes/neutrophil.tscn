@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://cuwg8v7t2j4j2"]
+
+[ext_resource type="Script" uid="uid://5m4amuufuxit" path="res://src/scripts/neutrophil.gd" id="2_fmbjf"]
+[ext_resource type="Texture2D" uid="uid://c4j2arwakba1w" path="res://assets/sprites/enemy/neutrophil/neutrophil-idle.png" id="3_0mymh"]
+[ext_resource type="PackedScene" uid="uid://b5mol0dogcm3f" path="res://src/scenes/corrosive_enzyme.tscn" id="4_6q8s3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_isier"]
+radius = 21.592823
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0y4bs"]
+atlas = ExtResource("3_0mymh")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15rsf"]
+atlas = ExtResource("3_0mymh")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1x0sy"]
+atlas = ExtResource("3_0mymh")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qakbk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0y4bs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15rsf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1x0sy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6chf"]
+bg_color = Color(0.9782248, 0.36200476, 0.36573622, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c6chf"]
+radius = 27.518175
+
+[node name="Neutrophil" type="CharacterBody2D" unique_id=1867382775]
+scale = Vector2(2, 2)
+script = ExtResource("2_fmbjf")
+enemy_spawn_scene = ExtResource("4_6q8s3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1251790245]
+shape = SubResource("CircleShape2D_isier")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1580619046]
+sprite_frames = SubResource("SpriteFrames_qakbk")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1675321932]
+offset_left = -33.5
+offset_top = -41.5
+offset_right = 33.5
+offset_bottom = -31.5
+theme_override_styles/fill = SubResource("StyleBoxFlat_c6chf")
+value = 100.0
+show_percentage = false
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1606733394]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1837259689]
+shape = SubResource("CircleShape2D_c6chf")
+debug_color = Color(0.8484358, 0.14409074, 0.83972657, 0.41960785)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
