@@ -124,10 +124,13 @@ script = ExtResource("1_4pcbe")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1483345997]
 position = Vector2(-2.46875, -9.2812195)
+rotation = 1.5707964
+ignore_rotation = false
 zoom = Vector2(1.3, 1.3)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=333081540]
 position = Vector2(-2.46875, -9.2812195)
+rotation = 1.5707964
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1896351570]
 position = Vector2(11.46875, 5.2812195)
@@ -151,6 +154,7 @@ fill_mode = 3
 nine_patch_stretch = true
 texture_under = ExtResource("1_ya6j6")
 texture_progress = SubResource("AnimatedTexture_lsi8j")
+metadata/_edit_use_anchors_ = true
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=1709851739]
 anchors_preset = 2
@@ -165,8 +169,10 @@ theme_override_styles/background = SubResource("StyleBoxFlat_hhiii")
 theme_override_styles/fill = SubResource("StyleBoxFlat_wpkk7")
 fill_mode = 3
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1185106480]
+rotation = 1.5707964
 scale = Vector2(13.422851, 13.209962)
 color = Color(1, 0.74509805, 1, 1)
 energy = 0.68
