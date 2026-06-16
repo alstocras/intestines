@@ -37,7 +37,8 @@ func take_knockback() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	look_at(player.global_position)
+	if not is_stunned:
+		look_at(player.global_position)
 	var roll = randf_range(0,1)
 	if player == null:
 		return
@@ -52,7 +53,7 @@ func _physics_process(delta: float) -> void:
 			is_retreating = true
 			await get_tree().create_timer(3).timeout
 			is_retreating = false
-		if not is_retreating and not is_taking_knockback and global_position.distance_to(player.global_position) < 750:
+		if not is_retreating and not is_taking_knockback and global_position.distance_to(player.global_position) < 750 and not is_stunned:
 			velocity = direction_to_player * randi_range(1000,1100) * delta * 10
 		elif is_taking_knockback:
 			velocity = direction_to_player * 1000 * -100 * delta
@@ -60,7 +61,7 @@ func _physics_process(delta: float) -> void:
 			velocity = direction_to_player * randi_range(1000,1200) * -10 * delta
 		else:
 			return
-	if not is_stunned:
+	
 		move_and_slide()
 
 	
@@ -70,7 +71,7 @@ func _process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.has_method("player_take_damage"):
+	if body.has_method("player_take_damage") and not is_stunned:
 		is_attacking = true
 		sprite.play("attack")
 		await get_tree().create_timer(0.05).timeout
