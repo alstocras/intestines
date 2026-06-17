@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dyts3pq4dfg1v" path="res://src/scripts/phagocyte.gd" id="1_8hym3"]
 [ext_resource type="Texture2D" uid="uid://b13w23kbg4snc" path="res://assets/sprites/enemy/phagocyte/phagocyte-attack.png" id="2_8hym3"]
 [ext_resource type="Texture2D" uid="uid://dsvbwroina5lm" path="res://assets/sprites/enemy/phagocyte/phagocyte-move.png" id="3_c4d3t"]
+[ext_resource type="Texture2D" uid="uid://dmanphv0n50mi" path="res://assets/sprites/enemy/phagocyte/damaged.png" id="3_pqgun"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pqgun"]
 atlas = ExtResource("2_8hym3")
@@ -27,6 +28,38 @@ region = Rect2(256, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_g13yv"]
 atlas = ExtResource("2_8hym3")
 region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fv63l"]
+atlas = ExtResource("3_pqgun")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjnia"]
+atlas = ExtResource("3_pqgun")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5oyw"]
+atlas = ExtResource("3_pqgun")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jamjj"]
+atlas = ExtResource("3_pqgun")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdwtc"]
+atlas = ExtResource("3_pqgun")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fecr"]
+atlas = ExtResource("3_pqgun")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etwlo"]
+atlas = ExtResource("3_pqgun")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgs4o"]
+atlas = ExtResource("3_pqgun")
+region = Rect2(448, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8hym3"]
 atlas = ExtResource("3_c4d3t")
@@ -87,6 +120,35 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_fv63l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjnia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5oyw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jamjj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdwtc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fecr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etwlo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgs4o")
+}],
+"loop": true,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_8hym3")
 }, {
 "duration": 1.0,
@@ -131,7 +193,8 @@ script = ExtResource("1_8hym3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1220952681]
 sprite_frames = SubResource("SpriteFrames_1n6m4")
-frame_progress = 0.0110349115
+animation = &"damaged"
+frame_progress = 0.34368005
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1701497705]
 
