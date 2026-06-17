@@ -99,7 +99,7 @@ func _process(_delta: float) -> void:
 
 func set_attack():
 	is_attacking = true
-	area_2d.scale = Vector2(1,1)	
+	area_2d.scale = Vector2(0.7,0.7)	
 	await get_tree().create_timer(0.5).timeout
 	area_2d.scale = Vector2(0.2,0.2)
 	is_attacking = false
