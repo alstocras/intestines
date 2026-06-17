@@ -25,9 +25,9 @@ func _physics_process(delta: float) -> void:
 	elif is_taking_knockback:
 		velocity = direction_to_player * speed * delta * -10
 	if global_position.distance_to(player.global_position) < 200 && not spawn_cooldown:
-		spawn_enemy(randi_range(2,3))
+		spawn_enemy(randi_range(4,5))
 		spawn_cooldown = true
-		await get_tree().create_timer(3).timeout
+		await get_tree().create_timer(2).timeout
 		spawn_cooldown = false
 	if global_position.distance_to(player.global_position) <= 740  and global_position.distance_to(player.global_position) >= 200 and not bullet_cooldown:
 		bullet_cooldown = true
@@ -69,7 +69,7 @@ func take_knockback() -> void:
 func spawn_enemy(amount : int):
 	for i in range(0,amount):
 		var enemy_instance = enemy_spawn_scene.instantiate()
-		enemy_instance.global_position = player.global_position + Vector2(randf() * 200, randf() * 200) # Random position within a 800x600 area
+		enemy_instance.global_position = player.global_position + Vector2(randf() * -200, randf() * -200) # Random position within a 800x600 area
 		get_tree().current_scene.add_child.call_deferred(enemy_instance)
 
 func spawn_bullet(amount : int):
