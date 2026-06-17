@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c8vab7d1ssvrl" path="res://assets/sprites/ui/health-bar/fill.png" id="3_8v6aa"]
 [ext_resource type="Texture2D" uid="uid://k505csgyxbhc" path="res://assets/sprites/ui/health-bar/fill2.png" id="4_4pcbe"]
 [ext_resource type="Texture2D" uid="uid://bew26b3v2wd3m" path="res://assets/sprites/ui/health-bar/fill3.png" id="5_xvyn7"]
+[ext_resource type="Script" uid="uid://crbsxarriwwsj" path="res://src/scripts/camera_2d.gd" id="9_xvyn7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4vu8n"]
 radius = 35.93765
